@@ -24,7 +24,7 @@ data class TicketAssignment(
 
     // FK - ticket_id
     @ManyToOne (fetch = FetchType.LAZY)
-    @JoinColum(name = "ticket_id")
+    @JoinColumn(name = "ticket_id")
     val ticket: Ticket,
 
 
@@ -36,7 +36,7 @@ data class TicketAssignment(
     // FK - previous_agent_id
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "previous_agent_id")
-    val previousAgent: User? null,
+    val previousAgent: User? = null,
 
     // FK - modified_by
     @ManyToOne (fetch = FetchType.LAZY)
