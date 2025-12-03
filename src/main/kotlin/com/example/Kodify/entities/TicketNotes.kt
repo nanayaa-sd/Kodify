@@ -1,27 +1,26 @@
 package com.example.Kodify.entities
 
 
+import com.example.Kodify.AuditTrail
 import jakarta.persistence.*
-import java.time. Instant
-
+import java.util.*
 
 @Entity
-@Table(name = "ticket_note")
+@Table(name = "ticket_notes")
+
 data class TicketNotes(
-
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID? = null,
 
-    @Lob // we use this for potentially long texts, descriptions can be lengthy
+    @Column(columnDefinition = "TEXT") // we use this for potentially long texts, the notes can be lengthy
     val noteText: String,
-    val created_at: Instant = Instant.now()
 
     //...Relationship...
 
     // FK - ticket_id
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticket_id")
     val ticket: Ticket
-)
+
+) : AuditTrail()

@@ -1,14 +1,8 @@
 package com.example.Kodify.entities
 
+import com.example.Kodify.AuditTrail
+import com.example.Kodify.enums.UserRole
 import jakarta.persistence.*
-import java.time.Instant
-
-enum class UserRole {
-    CUSTOMER,
-    SUPPORT_AGENT,
-    TEAM_LEAD,
-    ADMIN
-}
 
 @Entity
 @Table(name = "app_users")
@@ -29,7 +23,4 @@ data class User(
     @Enumerated(EnumType.STRING)
     val role: UserRole,
 
-    val created_at: Instant = Instant.now(),
-
-    val updated_at: Instant = Instant.now()
-)
+) : AuditTrail()
